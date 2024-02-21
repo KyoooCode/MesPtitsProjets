@@ -52,10 +52,27 @@ button {
     width: 70px;
     border-radius: 50%;
     margin: 10px;
+	transition: .6s;
+}
+
+.chiffre:active {
+    background-color: #4f4d50;
+    transition: background-color 0s; 
+}
+
+.calc:active {
+    background-color: #fffeff;
+	color: #f79a0a;
+    transition: background-color 0s; 
+}
+
+.utils:active {
+    background-color: #d2d0d3;
+    transition: background-color 0s; 
 }
 
 #zero {
-    width: 170px;
+    width: 160px;
     border-radius: 40px;
     text-align: left;
     padding-left: 29px;
@@ -73,4 +90,13 @@ button {
 .chiffre{
 	background-color: #313131;
 	color: white;
+}
+
+#multiplication{
+	font-size: 0.8em;
+	padding-top: 5px;
+}
+
+#soustraction, #division, #addition, #egal, #pourcent{
+	padding-top: 2px;
 }
