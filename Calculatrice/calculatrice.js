@@ -19,6 +19,8 @@ chiffres.forEach((e)=>{
     })
 })
 
+zoneCalc.add
+
 operat.forEach((e)=>{
     e.addEventListener('click', ()=>{
         if (e.id === "egal") {
