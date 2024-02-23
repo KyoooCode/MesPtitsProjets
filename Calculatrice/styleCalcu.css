@@ -7,6 +7,10 @@
     font-family: "Roboto", sans-serif;
 }
 
+button i{
+    pointer-events: none;
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -36,12 +40,12 @@ body {
 	
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Added to distribute space evenly */
+    justify-content: space-between; 
 }
 
 #clavier {
     display: flex;
-    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+    flex-wrap: wrap; 
     justify-content: center;
     align-items: center;
 	margin-bottom: 50px;
@@ -71,7 +75,7 @@ button {
     transition: background-color 0s; 
 }
 
-#zero {
+#ch-zero {
     width: 160px;
     border-radius: 40px;
     text-align: left;
@@ -92,11 +96,11 @@ button {
 	color: white;
 }
 
-#multiplication{
+#calc-multiplication{
 	font-size: 0.8em;
 	padding-top: 5px;
 }
 
-#soustraction, #division, #addition, #egal, #pourcent{
+#calc-soustraction, #calc-division, #calc-addition, #calc-egal, #utils-pourcent{
 	padding-top: 2px;
 }
