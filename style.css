@@ -1,0 +1,111 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Comfortaa", sans-serif;
+}
+
+/*HEADER*/
+
+h1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 3em;
+    height: 200px;
+    font-weight: 700;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*ARTICLE CONTENANT LES PROJETS*/
+#projets{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 85%;
+}
+
+/*CLASS CARTES*/
+.project_card{
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 20px;
+    transition: .5s;
+}
+
+.project_card img{
+    height: 75%;
+    width: 100%;
+    transition: .5s;
+}
+
+.project_card:hover{
+    transform: scale(1.02);
+}
+
+.project_card:hover img{
+   filter: blur(5px);
+}
+
+.overlay {
+    font-size: 1.8em;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    width: 300px;
+    height: 50px;
+    border-radius: 50px;
+    opacity: 0;
+    display: flex;
+}
+
+.overlay p{
+    text-align: center;
+}
+
+.project_card:hover .brightness{
+    opacity: .2;
+}
+
+.project_card:hover .overlay{
+    opacity: 1;
+}
+
+.brightness{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background-color: black;
+    opacity: 0;
+    border-radius: 20px;
+    transition: .5s;
+}
+
+/*CALCULATRICE*/
+#prochainement{
+    background-color: #FDFEFF
+}
+
+/*CALCULATRICE*/
+#calculatrice{
+    background-color: #f2993a
+}
+
+/*METEO*/
+#meteo{
+    background: linear-gradient(0deg, rgba(41,49,59,1) 0%, rgba(52,62,75,1) 110%);
+}
