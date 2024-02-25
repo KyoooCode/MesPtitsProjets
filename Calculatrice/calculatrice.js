@@ -13,8 +13,58 @@ let operat = document.querySelectorAll(".calc");
 
 let calc = [];
 
+let calculList = (array)=>{
+    //A DEVELOPPER
+}
+
+let isInList = (array, elt)=>{
+
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+        if (array[i] == elt) {
+            return true, i;
+        }
+    }
+    return false;
+}
+
+let test = [1, "*", 34];
+
+console.log(isInList(test, "*"));
+
 let isEmpty = (array)=>{
     return array.length === 0;
+}
+
+let ifLastIsOpeReplace = (elt)=>{
+    if (calc[calc.length-1] === "-" || calc[calc.length-1] === "+" || calc[calc.length-1] === "*" || calc[calc.length-1] === "/") {
+        calc[calc.length-1] = elt;
+        return true;
+    }
+    return false;
+}
+
+let isLastIsOpe = ()=>{
+    if (calc[calc.length-1] === "-" || calc[calc.length-1] === "+" || calc[calc.length-1] === "*" || calc[calc.length-1] === "/") {
+        return true;
+    }
+    return false;
+}
+
+let isLastNumber = ()=>{
+    if (typeof calc[calc.length-1] === "number"){
+        return true
+    }
+    return false
+} 
+
+let isOpeInCalc = ()=>{
+    calc.forEach((e)=>{
+        if (calc[e] === "-" || calc[e] === "+") {
+            return true
+        }
+    });
+    return false
 }
 
 clavier.addEventListener('click', (e)=>{
@@ -22,13 +72,6 @@ clavier.addEventListener('click', (e)=>{
     let type = eTarget[0];
     let idBtn = eTarget[1];
 
-    let ifLastIsOpeReplace = (elt)=>{
-        if (calc[calc.length-1] === "-" || calc[calc.length-1] === "+" || calc[calc.length-1] === "*" || calc[calc.length-1] === "/") {
-            calc[calc.length-1] = elt;
-            return true;
-        }
-        return false;
-    }
 
     switch (type) {
         case "calc":
@@ -58,6 +101,9 @@ clavier.addEventListener('click', (e)=>{
                     if (ifLastIsOpeReplace("-")){
                         console.log(calc);
                         break;
+                    }
+                    if (isOpeInCalc()) {
+                        
                     }
                     calc.push("-");
                     console.log(calc);
@@ -89,19 +135,31 @@ clavier.addEventListener('click', (e)=>{
 
                     break;
 
-                default: //pourcent
+                case "pourcent":
+
+
                     break;
             }
             break;
 
         case "ch":
+            let chClick = parseInt(e.target.textContent);
             if (calc != []) {
                 ac.textContent = "C";
             }
-            calc.push(e.target.textContent);
-            console.log(calc);
+            if (isLastNumber()) {
+                calc[calc.length-1] += chClick.toString();
+                calc[calc.length-1] = parseInt(calc[calc.length-1] );
+
+                zoneCalc.textContent = calc[calc.length-1].toString();
+                console.log(calc);
+                break;
+            }
+            calc.push(chClick);
+            console.log(calc)
+            zoneCalc.textContent = calc[calc.length-1].toString();
             break;
-        
+
         default:
             break;
 
