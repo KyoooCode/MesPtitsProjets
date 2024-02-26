@@ -110,6 +110,7 @@ let getLastEltInArray = (array) => {
 }
 
 let plusMinus = false;
+let isTyping = false;
 
 clavier.addEventListener('click', (e) => {
     let eTarget = e.target.id.split("-");
@@ -121,6 +122,9 @@ clavier.addEventListener('click', (e) => {
             if (isEmpty(calc)) {
                 break;
             }
+            isTyping = false;
+            calc[calc.length-1] = parseFloat(formatNumber(getLastEltInArray(calc)));
+            console.log(calc);
             switch (idBtn) {
                 case "division":
                     if (ifLastIsOpeReplace("/")) {
@@ -166,6 +170,11 @@ clavier.addEventListener('click', (e) => {
                     console.log(calc);
                     break;
                 case "egal":
+                    if (calc.length === 1){
+                        console.log(calc.length)
+                        zoneCalc.textContent = formatNumber(parseFloat(getLastEltInArray(calc)));
+                        break;
+                    }
                     calc = [calculList(calc)];
                     console.log(calc);
                     zoneCalc.textContent = formatNumber(getLastEltInArray(calc));
@@ -173,6 +182,7 @@ clavier.addEventListener('click', (e) => {
             break;
 
         case "utils":
+            isTyping = false;
             if (isEmpty(calc)) {
                 break;
             }
@@ -205,29 +215,45 @@ clavier.addEventListener('click', (e) => {
                         break;
                     }
                 case "pourcent":
-                    if (!isEmpty(calc) && isLastNumber()) {
-                        calc[calc.length - 1] /= 100;
-                        zoneCalc.textContent = formatNumber(getLastEltInArray(calc));
-                        console.log(calc);
-                    }
+                    //A DEVELOPPER
+
                     break;
             }
             break;
 
         case "ch":
-            let chClick = parseInt(e.target.textContent);
-            ac.textContent = "C";
-            if (isLastNumber()) {
-                calc[calc.length - 1] += chClick.toString();
-                calc[calc.length - 1] = parseInt(getLastEltInArray(calc));
-                zoneCalc.textContent = formatNumber(getLastEltInArray(calc));
-                console.log(calc);
-                break;
-            }
-            calc.push(chClick);
-            console.log(calc)
-            zoneCalc.textContent = formatNumber(getLastEltInArray(calc));
-            break;
+            switch (idBtn) {
+                case "virgule":
+                    if (isEmpty(calc)) {
+                        break;
+                    }
+                    isTyping = true;
+                    calc[calc.length-1] = calc[calc.length-1] + "."
+                    zoneCalc.textContent += ",";
+                    console.log(calc);
+                    break;
+                default:
+                    let chClick = parseInt(e.target.textContent);
+                    ac.textContent = "C";
+
+                    if (isTyping) {
+                        calc[calc.length-1] += chClick;
+                        zoneCalc.textContent = formatNumber(parseFloat(getLastEltInArray(calc)));
+                        break;
+                    }
+
+                    if (isLastNumber()) {
+                        calc[calc.length - 1] += chClick.toString();
+                        calc[calc.length - 1] = parseInt(getLastEltInArray(calc));
+                        zoneCalc.textContent = formatNumber(getLastEltInArray(calc));
+                        console.log(calc);
+                        break;
+                    }
+                    calc.push(chClick);
+                    console.log(calc)
+                    zoneCalc.textContent = formatNumber(getLastEltInArray(calc));
+                    break;
+                }
 
         default:
             break;
