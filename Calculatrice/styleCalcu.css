@@ -24,14 +24,16 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    overflow:hidden;
 }
 
 #boxresultat p {
-    padding: 0 45px 0 0;
+    padding: 0 54px 0 54px;
     font-size: 3em;
     text-align: right;
     font-weight: 300;
     color: white;
+    overflow:hidden;
 }
 
 #wrapper {

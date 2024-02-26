@@ -13,24 +13,64 @@ let operat = document.querySelectorAll(".calc");
 
 let calc = [];
 
-let calculList = (array)=>{
-    //A DEVELOPPER
+let calculList = (inputArray)=> {
+    let array = inputArray.slice();
+  
+    let applyOperator = (op, op1, op2)=> {
+        switch (op) {
+            case "+":
+                return op1 + op2;
+            case "-":
+                return op1 - op2;
+            case "*":
+                return op1 * op2;
+            case "/":
+                return op1 / op2;
+        }
+    } 
+  
+    let highPriority = ()=> {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] === "*" || array[i] === "/") {
+                let op = array[i];
+                let op1 = array[i - 1];
+                let op2 = array[i + 1];
+
+                let resultat = applyOperator(op, op1, op2);
+                array.splice(i - 1, 3, resultat);
+                i--;
+            }
+        }
+    }
+  
+    let resolveOperations = ()=> {
+        highPriority();
+
+        while (array.length > 1) {
+            let op = array[0];
+            let op1 = array[1];
+            let op2 = array[2];
+
+            let resultat = applyOperator(op1, op, op2);
+            array.splice(0, 3, resultat);
+        }
+    }
+  
+    resolveOperations();
+    return array[0];
 }
+  
 
 let isInList = (array, elt)=>{
 
     for (let i = 0; i < array.length; i++) {
         console.log(array[i]);
         if (array[i] == elt) {
-            return true, i;
+            return true;
         }
     }
     return false;
 }
-
-let test = [1, "*", 34];
-
-console.log(isInList(test, "*"));
 
 let isEmpty = (array)=>{
     return array.length === 0;
@@ -118,7 +158,9 @@ clavier.addEventListener('click', (e)=>{
                     console.log(calc);
                     break;
                 case "egal":
-
+                    calc = [calculList(calc)];
+                    console.log(calc);
+                    zoneCalc.textContent = calculList(calc);
             }
             break;
 
